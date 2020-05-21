@@ -1,0 +1,53 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>Home
+            <div class="material-icons" id="search" (click)="search()">&#xE8B6;</div>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['app-newspaper']"><span class="material-icons">
+              menu_book
+                </span>Вестник
+             </a>
+
+            <a mat-list-item [routerLink]="['app-magazines']"><span class="material-icons">
+                  menu_book
+                    </span>Списание</a>
+            <a mat-list-item [routerLink]="['app-books']"> <span class="material-icons">
+              menu_book
+                </span>Поредица</a>
+        </mat-nav-list>
+        <mat-nav-list>
+
+            <div class="settingBtn" id="botNav" mat-list-item>
+                <a mat-list-item href="#">
+                    <span class="material-icons">Настройки</span>
+                </a>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+        <button id="button" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <mat-toolbar color="primary" id="search-toolbar">
+            <input ng-model="search.notes " placeholder="Търсене...">
+        </mat-toolbar>
+        <ng-content>
+        </ng-content>
+
+        <div id="imgContainer">
+            <img class="background" src="../../assets/background/main.jpg" alt="">
+            <p>Начинание, замислено в 2006 г. и започнато през 2013 г., за възстановяване и съхраняване на фантастичните разкази, родни и преведени, видели бял свят в отдавна изчезнали български периодични издания. С безкористната подкрепа на неколцина привърженици,
+                то продължава и днес.</p>
+        </div>
+        <mat-toolbar class="footer">
+            <div layout="row " layout-align="center center " flex>
+                <span>Tera Fantastica</span>
+            </div>
+        </mat-toolbar>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

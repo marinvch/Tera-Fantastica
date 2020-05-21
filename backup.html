@@ -1,0 +1,38 @@
+<div (window:resize)="reportWindowSize($event)" class="box-container" fxLayout="column">
+    <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+            <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+                <swiper *ngIf="type == 'component' && show" class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled" (indexChange)="onIndexChange($event)" (swiperTransitionStart)="onSwiperEvent('transitionStart')" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
+                    <div *ngFor="let slide of slides" class="swiper-slide">
+                        <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                            <img src=" {{slide.url}}" alt="">
+                        </div>
+                    </div>
+                </swiper>
+                <div class="activeSlide">
+                    <br>
+                    <p>{{slides[0].text.name}}</p>
+                    <p>Автор: {{slides[0].text.author}}</p>
+                    <p>Година: {{slides[0].text.Year}}</p>
+                    <p>Формат: {{slides[0].text.Format}}</p>
+                    <p>Страници: {{slides[0].text.Pages}}</p>
+                    <span class="material-icons">
+                 <a href="{{this.slides[0].link}}" target="blank"></a>
+                </span>
+                </div>
+                <div *ngIf="type == 'directive' && show" class="swiper-container" [disabled]="disabled" [swiper]="config" (indexChange)="onIndexChange($event)" (swiperTransitionStart)="onSwiperEvent('transitionStart')" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
+                    <div class="swiper-wrapper">
+                        <div *ngFor="let slide of slides" class="swiper-slide">
+                            <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                                <img src=" {{slide.url}}" alt="">
+                            </div>
+                        </div>
+                        <div class="activeSlide">{{slides[0].id}}<br>{{slides[0].link}}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{removeBtns()}}

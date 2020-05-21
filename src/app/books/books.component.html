@@ -1,0 +1,21 @@
+<swiper (window:resize)="reportWindowSize($event)" fxFlex="auto" [config]="config " (indexChange)="onIndexChange($event) ">
+    <div *ngFor="let slide of Slides; let index=index" class="swiper-slide cursor-pointer ">
+        <div fxLayout="column " fxLayoutAlign="center center " fxFlexFill class="mx-2 ">
+            <img src=" {{slide.url}} " alt=" ">
+        </div>
+    </div>
+</swiper>
+
+<div class="activeSlide ">
+    <br>
+    <p>{{Slides[0].text.name}}</p>
+    <p>Автор: {{Slides[0].text.author}}</p>
+    <p>Година: {{Slides[0].text.Year}}</p>
+    <p>Формат: {{Slides[0].text.Format}}</p>
+    <p>Страници: {{Slides[0].text.Pages}}</p>
+    <span class="material-icons ">
+<a href="{{this.Slides[0].link}} " target="blank "></a>
+</span>
+</div>
+
+{{removeBtns()}}
