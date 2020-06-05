@@ -1,4 +1,4 @@
-import { BooksService } from "./../books.service";
+import { BooksService } from "./books.service";
 import {
   SwiperComponent,
   SwiperDirective,

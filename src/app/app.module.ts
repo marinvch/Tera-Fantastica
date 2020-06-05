@@ -1,5 +1,6 @@
-import { MagazinesService } from "./magazines.service";
-import { BooksService } from "./books.service";
+import { MagazinesService } from "./magazines/magazines.service";
+import { BooksService } from "./books/books.service";
+
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";

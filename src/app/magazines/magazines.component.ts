@@ -1,4 +1,4 @@
-import { MagazinesService } from "./../magazines.service";
+import { MagazinesService } from "./magazines.service";
 import {
   SwiperComponent,
   SwiperDirective,
