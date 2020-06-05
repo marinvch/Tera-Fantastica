@@ -1,99 +1,20 @@
+import { BooksService } from "./../books.service";
 import {
   SwiperComponent,
   SwiperDirective,
   SwiperConfigInterface,
-} from 'ngx-swiper-wrapper';
-import { ViewChild, OnInit, Component } from '@angular/core';
+} from "ngx-swiper-wrapper";
+import { ViewChild, OnInit, Component } from "@angular/core";
 
 @Component({
-  selector: 'app-books',
-  templateUrl: 'books.component.html',
-  styleUrls: ['books.component.css'],
+  selector: "app-books",
+  templateUrl: "books.component.html",
+  styleUrls: ["books.component.css"],
 })
 export class BooksComponent implements OnInit {
   public show = true;
 
-  public Slides = [{
-    url: '../assets/books/img1.jpg',
-    text: {
-      name: 'Домът на Велзевул',
-      author: 'Т. Р. Пейков',
-      Year: 2002,
-      Format: '60×84/16',
-      Pages: 208,
-    },
-    id: 1,
-    link: '',
-  }, {
-    url: '../assets/books/img2.jpg',
-    text: {
-      name: 'Хакери на човешките души',
-      author: 'Иван Попов',
-      Year: 2004,
-      Format: '56×84/16',
-      Pages: 192,
-    },
-    id: 2,
-    link: '../assets/books/pdf/Ivan_Popov_-_Hakeri_na_choveshkite_dushi.pdf',
-  }, {
-    url: '../assets/books/img3.jpg',
-    text: {
-      name: 'Операция „Риба“',
-      author: 'Гай Афраний Кота',
-      Year: 2006,
-      Format: '130×200 мм',
-      Pages: 336,
-    },
-    id: 3,
-    link: '../assets/books/pdf/Petyr_Kopanov_-_Operatsija_Riba.pdf',
-  }, {
-    url: '../assets/books/img4.jpg',
-    text: {
-      name: 'Орфеус слиза в Ада',
-      author: 'Георги Малинов',
-      Year: 2007,
-      Format: '130×200 мм',
-      Pages: 244,
-    },
-    id: 4,
-    link: '',
-  }, {
-    url: '../assets/books/img5.jpg',
-    text: {
-      name: 'Те не вярват в приказки',
-      author: 'Мартин Петков',
-      Year: 2008,
-      Format: '130×200 мм',
-      Pages: 288,
-    },
-    id: 5,
-    link: '',
-  }, {
-    url: '../assets/books/img6.jpg',
-    text: {
-      name: 'Домът на Велзевул',
-      author: 'Тервел Пейков',
-      Year: 2008,
-      Format: '130×200 мм',
-      Pages: 224,
-    },
-    id: 6,
-    link: '',
-  }, {
-    url: '../assets/books/img7.jpg',
-    text: {
-      name: 'С името на Иван Ефремов',
-      author: 'Александър Карапанчев, Юрий Илков',
-      Year: 2009,
-      Format: '56/84/16',
-      Pages: 284,
-    },
-    id: 7,
-    link: '',
-  },
-  ];
-
-  public type = 'component';
+  public Slides = [];
 
   public disabled = false;
 
@@ -101,12 +22,12 @@ export class BooksComponent implements OnInit {
     a11y: false,
     observer: true,
     centeredSlides: true,
-    direction: 'horizontal',
+    direction: "horizontal",
     mousewheel: true,
     keyboard: true,
     slidesPerView: 5,
     loop: true,
-    effect: 'coverflow',
+    effect: "coverflow",
     coverflowEffect: {
       rotate: 0,
       stretch: -50,
@@ -120,16 +41,12 @@ export class BooksComponent implements OnInit {
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
   usefulSwiper: any;
 
-  constructor() {
-    const searchBtn = document.getElementById('search');
-    searchBtn.style.display = 'block';
+  constructor(private _BooksService: BooksService) {
+    const searchBtn = document.getElementById("search");
+    searchBtn.style.display = "block";
 
-    const removeImg = document.getElementById('imgContainer');
-    removeImg.style.display = 'none';
-  }
-
-  public toggleType(): void {
-    this.type = this.type === 'component' ? 'directive' : 'component';
+    const removeImg = document.getElementById("imgContainer");
+    removeImg.style.display = "none";
   }
 
   public toggleDisabled(): void {
@@ -138,7 +55,7 @@ export class BooksComponent implements OnInit {
 
   public toggleDirection(): void {
     this.config.direction =
-      this.config.direction === 'horizontal' ? 'vertical' : 'horizontal';
+      this.config.direction === "horizontal" ? "vertical" : "horizontal";
   }
 
   public toggleSlidesPerView(): void {
@@ -158,10 +75,9 @@ export class BooksComponent implements OnInit {
   }
 
   public onIndexChange(index: number): void {
-
-    if (this.Slides[index].link !== '') {
+    if (this.Slides[index].link !== "") {
       // tslint:disable-next-line: no-shadowed-variable
-      const element = document.querySelector('.activeSlide');
+      const element = document.querySelector(".activeSlide");
       element.innerHTML = `
         <br>
         <p>${this.Slides[index].text.name}</p>
@@ -174,7 +90,7 @@ export class BooksComponent implements OnInit {
         </span>`;
     } else {
       // tslint:disable-next-line: no-shadowed-variable
-      const element = document.querySelector('.activeSlide');
+      const element = document.querySelector(".activeSlide");
       element.innerHTML = `
         <br>
         <p>${this.Slides[index].text.name}</p>
@@ -183,44 +99,42 @@ export class BooksComponent implements OnInit {
         <p>Формат: ${this.Slides[index].text.Format}</p>
         <p>Страници: ${this.Slides[index].text.Pages}</p>`;
     }
-    // tslint:disable-next-line: variable-name
-
-    console.log('Swiper index: ', index);
   }
-
 
   public onSwiperEvent(event: string): void {
-    console.log('Swiper event: ', event);
+    console.log("Swiper event: ", event);
   }
 
-  public reportWindowSize(event: { target: { innerHeight: any; innerWidth: any; }; }): void {
+  public reportWindowSize(event: {
+    target: { innerHeight: any; innerWidth: any };
+  }): void {
     const heigth = event.target.innerHeight;
     const width = event.target.innerWidth;
 
-    if (heigth > width && this.config.direction !== 'vertical') {
-      this.config.direction = 'vertical';
-      if (this.config.direction === 'vertical') {
+    if (heigth > width && this.config.direction !== "vertical") {
+      this.config.direction = "vertical";
+      if (this.config.direction === "vertical") {
         this.config.slidesPerView = 3;
       }
     }
-    if (heigth < width && this.config.direction !== 'horizontal') {
-      this.config.direction = 'horizontal';
-      if (this.config.direction === 'horizontal') {
+    if (heigth < width && this.config.direction !== "horizontal") {
+      this.config.direction = "horizontal";
+      if (this.config.direction === "horizontal") {
         this.config.slidesPerView = 5;
       }
     }
   }
 
   public removeBtns(): void {
-    const leftBtn = document.querySelector('.swiper-button-prev');
+    const leftBtn = document.querySelector(".swiper-button-prev");
 
     leftBtn?.remove();
 
-    const rigthBtn = document.querySelector('.swiper-button-next');
+    const rigthBtn = document.querySelector(".swiper-button-next");
     rigthBtn?.remove();
   }
 
   ngOnInit(): void {
-
+    this.Slides = this._BooksService.getData();
   }
 }

@@ -1,105 +1,18 @@
+import { MagazinesService } from "./../magazines.service";
 import {
   SwiperComponent,
   SwiperDirective,
   SwiperConfigInterface,
-} from 'ngx-swiper-wrapper';
-import { ViewChild, OnInit, Component } from '@angular/core';
-
+} from "ngx-swiper-wrapper";
+import { ViewChild, OnInit, Component } from "@angular/core";
 
 @Component({
-  selector: 'app-magazines',
-  templateUrl: './magazines.component.html',
-  styleUrls: ['./magazines.component.css'],
+  selector: "app-magazines",
+  templateUrl: "magazines.component.html",
+  styleUrls: ["magazines.component.css"],
 })
-
-
 export class MagazinesComponent implements OnInit {
   public show = true;
-
-  public slides = [
-    {
-      url: '../assets/magazines/img1.jpg',
-      text: {
-        name: 'Списание „Тера фантастика“, брой 1.',
-        author: 'Юрий Илков',
-        Year: 1999,
-        Format: '145×200 мм',
-        Pages: 80
-      }
-      ,
-      id: 1,
-      link: '',
-    },
-    {
-      url: '../assets/magazines/img2.jpg', text: {
-        name: 'Списание „Тера фантастика“, брой 2.',
-        author: 'Юрий Илков',
-        Year: 1999,
-        Format: '145×200 мм',
-        Pages: 80,
-      },
-      id: 2,
-      link: ''
-    },
-    {
-      url: '../assets/magazines/img3.jpg', text: {
-        name: 'Списание „Тера фантастика“, брой 1.',
-        author: 'Юрий Илков',
-        Year: 2000,
-        Format: '145×200 мм',
-        Pages: 80
-      },
-      id: 3,
-      link: ''
-    },
-    {
-      url: '../assets/magazines/img4.jpg', text: {
-        name: 'Списание „Тера фантастика“, специален брой.',
-        author: 'Юрий Илков',
-        Year: 2000,
-        Format: '145×200 мм',
-        Pages: 32
-      },
-      id: 4,
-      link: ''
-    },
-    {
-      url: '../assets/magazines/img5.jpg', text: {
-        name: 'Списание „Тера фантастика“, брой 1.',
-        author: 'Юрий Илков',
-        Year: 2001,
-        Format: '145×210 мм',
-        Pages: 112
-      },
-      id: 5,
-      link: ''
-    },
-    {
-      url: '../assets/magazines/img6.jpg', text: {
-        name: 'Списание „Тера фантастика“, брой 2.',
-        author: 'Юрий Илков',
-        Year: 2001,
-        Format: '145×210 мм',
-        Pages: 128
-      },
-      id: 6,
-      link: ''
-    },
-    {
-      url: '../assets/magazines/img7.jpg', text: {
-        name: 'Списание „Тера фантастика“, брой 1.',
-        author: 'Юрий Илков',
-        Year: 2002,
-        Format: '145×210 мм',
-        Pages: 144
-      },
-      id: 7,
-      link: ''
-    },
-  ];
-
-
-  public type = 'component';
 
   public disabled = false;
 
@@ -107,14 +20,12 @@ export class MagazinesComponent implements OnInit {
     a11y: false,
     observer: true,
     centeredSlides: true,
-    direction: 'horizontal',
+    direction: "horizontal",
     mousewheel: true,
     keyboard: true,
-    scrollbar: false,
-    grabCursor: true,
     slidesPerView: 5,
     loop: true,
-    effect: 'coverflow',
+    effect: "coverflow",
     coverflowEffect: {
       rotate: 0,
       stretch: -50,
@@ -127,33 +38,27 @@ export class MagazinesComponent implements OnInit {
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
 
+  public slides = [];
 
-  constructor() {
+  constructor(private _MagazinesService: MagazinesService) {
+    const element = (document.querySelectorAll(
+      "mat-toolbar"
+    )[1] as unknown) as HTMLElement;
+    element.style.display = "block";
 
-    const element = document.querySelectorAll('mat-toolbar')[1] as unknown as HTMLElement;
-    element.style.display = 'block';
+    const searchBtn = document.getElementById("search");
+    searchBtn.style.display = "block";
 
-    const searchBtn = document.getElementById('search');
-    searchBtn.style.display = 'block';
-
-    const removeImg = document.getElementById('imgContainer');
-    removeImg.style.display = 'none';
-  }
-
-  public toggleType(): void {
-    this.type = this.type === 'component' ? 'directive' : 'component';
-  }
-
-  public toggleDisabled(): void {
-    this.disabled = !this.disabled;
+    const removeImg = document.getElementById("imgContainer");
+    removeImg.style.display = "none";
   }
 
   public toggleDirection(): void {
     this.config.direction =
-      this.config.direction === 'horizontal' ? 'vertical' : 'horizontal';
+      this.config.direction === "horizontal" ? "vertical" : "horizontal";
   }
 
-  public toggleSlidesPerView(): void {
+  public toggleslidesPerView(): void {
     if (this.config.slidesPerView !== 1) {
       this.config.slidesPerView = 5;
     } else {
@@ -170,9 +75,9 @@ export class MagazinesComponent implements OnInit {
   }
 
   public onIndexChange(index: number): void {
-    if (this.slides[index].link !== '') {
+    if (this.slides[index].link !== "") {
       // tslint:disable-next-line: no-shadowed-variable
-      const element = document.querySelector('.activeSlide');
+      const element = document.querySelector(".activeSlide");
       element.innerHTML = `
         <br>
         <p>${this.slides[index].text.name}</p>
@@ -185,7 +90,7 @@ export class MagazinesComponent implements OnInit {
         </span>`;
     } else {
       // tslint:disable-next-line: no-shadowed-variable
-      const element = document.querySelector('.activeSlide');
+      const element = document.querySelector(".activeSlide");
       element.innerHTML = `
         <br>
         <p>${this.slides[index].text.name}</p>
@@ -196,41 +101,42 @@ export class MagazinesComponent implements OnInit {
     }
     // tslint:disable-next-line: variable-name
 
-    console.log('Swiper index: ', index);
+    console.log("Swiper index: ", index);
   }
 
   public onSwiperEvent(event: string): void {
-
-    console.log('Swiper event: ', event);
+    console.log("Swiper event: ", event);
   }
 
-  public reportWindowSize(event: { target: { innerHeight: any; innerWidth: any; }; }): void {
+  public reportWindowSize(event: {
+    target: { innerHeight: any; innerWidth: any };
+  }): void {
     const heigth = event.target.innerHeight;
     const width = event.target.innerWidth;
 
-    if (heigth > width && this.config.direction !== 'vertical') {
-      this.config.direction = 'vertical';
-      if (this.config.direction === 'vertical') {
+    if (heigth > width && this.config.direction !== "vertical") {
+      this.config.direction = "vertical";
+      if (this.config.direction === "vertical") {
         this.config.slidesPerView = 3;
       }
     }
-    if (heigth < width && this.config.direction !== 'horizontal') {
-      this.config.direction = 'horizontal';
-      if (this.config.direction === 'horizontal') {
+    if (heigth < width && this.config.direction !== "horizontal") {
+      this.config.direction = "horizontal";
+      if (this.config.direction === "horizontal") {
         this.config.slidesPerView = 5;
       }
     }
   }
 
   public removeBtns(): void {
-    const leftBtn = document.querySelector('.swiper-button-prev');
+    const leftBtn = document.querySelector(".swiper-button-prev");
     leftBtn?.remove();
 
-    const rigthBtn = document.querySelector('.swiper-button-next');
+    const rigthBtn = document.querySelector(".swiper-button-next");
     rigthBtn?.remove();
   }
 
   ngOnInit(): void {
-
+    this.slides = this._MagazinesService.getData();
   }
 }
