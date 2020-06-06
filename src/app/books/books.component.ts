@@ -135,6 +135,6 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.Slides = this._BooksService.getData();
+    this._BooksService.getData().subscribe((data) => (this.Slides = data));
   }
 }
