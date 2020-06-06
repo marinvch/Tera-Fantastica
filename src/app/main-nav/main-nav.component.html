@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Home
-      <div class="material-icons" id="search" (click)="search()">&#xE8B6;</div>
+      <div class="material-icons" id="search" (click)="toggle()">&#xE8B6;</div>
     </mat-toolbar>
 
     <mat-nav-list>
@@ -35,7 +35,8 @@
     </button>
 
     <mat-toolbar color="primary" id="search-toolbar">
-      <input ng-model="search.notes " placeholder="Търсене...">
+      <input (keypress)="search()" placeholder="Търсене..." />
+
     </mat-toolbar>
     <ng-content>
     </ng-content>
