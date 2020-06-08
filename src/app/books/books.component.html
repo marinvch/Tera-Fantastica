@@ -8,15 +8,16 @@
 </swiper>
 
 <div class="activeSlide ">
-  <br>
-  <p>{{Slides[0].text.name}}</p>
-  <p>Автор: {{Slides[0].text.author}}</p>
-  <p>Година: {{Slides[0].text.Year}}</p>
-  <p>Формат: {{Slides[0].text.Format}}</p>
-  <p>Страници: {{Slides[0].text.Pages}}</p>
-  <span class="material-icons ">
-    <a href="{{this.Slides[0].link}} " target="blank "></a>
-  </span>
+  <ul>
+    <li>{{Slides[0].text.name}}</li>
+    <li>Автор: {{Slides[0].text.author}}</li>
+    <li>Година: {{Slides[0].text.Year}}</li>
+    <li>Формат: {{Slides[0].text.Format}}</li>
+    <li>Страници: {{Slides[0].text.Pages}}</li>
+    <span class="material-icons ">
+      <a href="{{this.Slides[0].link}} " target="blank "></a>
+    </span>
+  </ul>
 </div>
 
 {{removeBtns()}}

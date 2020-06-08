@@ -79,25 +79,28 @@ export class MagazinesComponent implements OnInit {
       // tslint:disable-next-line: no-shadowed-variable
       const element = document.querySelector(".activeSlide");
       element.innerHTML = `
-        <br>
-        <p>${this.slides[index].text.name}</p>
-        <p>Автор: ${this.slides[index].text.author}</p>
-        <p>Година: ${this.slides[index].text.Year}</p>
-        <p>Формат: ${this.slides[index].text.Format}</p>
-        <p>Страници: ${this.slides[index].text.Pages}</p>
-        <span class="material-icons">
+        <ul>
+        <li>${this.slides[index].text.name}</li>
+        <li>Автор: ${this.slides[index].text.author}</li>
+        <li>Година: ${this.slides[index].text.Year}</li>
+        <li>Формат: ${this.slides[index].text.Format}</li>
+        <li>Страници: ${this.slides[index].text.Pages}</li>
+        <li><span class="material-icons">
         <a href="${this.slides[index].link}" target="blank">picture_as_pdf</a>
-        </span>`;
+        </span>
+        </li>
+        </ul>`;
     } else {
       // tslint:disable-next-line: no-shadowed-variable
       const element = document.querySelector(".activeSlide");
       element.innerHTML = `
-        <br>
-        <p>${this.slides[index].text.name}</p>
-        <p>Автор: ${this.slides[index].text.author}</p>
-        <p>Година: ${this.slides[index].text.Year}</p>
-        <p>Формат: ${this.slides[index].text.Format}</p>
-        <p>Страници: ${this.slides[index].text.Pages}</p>`;
+        <ul>
+        <li>${this.slides[index].text.name}</li>
+        <li>Автор: ${this.slides[index].text.author}</li>
+        <li>Година: ${this.slides[index].text.Year}</li>
+        <li>Формат: ${this.slides[index].text.Format}</li>
+        <li>Страници: ${this.slides[index].text.Pages}</li>
+        </ul>`;
     }
     // tslint:disable-next-line: variable-name
 

@@ -1,21 +1,23 @@
-<swiper (window:resize)="reportWindowSize($event)" fxFlex="auto" [config]="config " (indexChange)="onIndexChange($event) ">
-    <div *ngFor="let slide of slides; let index=index " class="swiper-slide cursor-pointer ">
-        <div fxLayout="column " fxLayoutAlign="center center " fxFlexFill class="mx-2" fxLayoutGap="5px">
-            <img src=" {{slide.url}} " alt=" ">
-        </div>
+<swiper (window:resize)="reportWindowSize($event)" fxFlex="auto" [config]="config "
+  (indexChange)="onIndexChange($event) ">
+  <div *ngFor="let slide of slides; let index=index " class="swiper-slide cursor-pointer ">
+    <div fxLayout="column " fxLayoutAlign="center center " fxFlexFill class="mx-2" fxLayoutGap="5px">
+      <img src=" {{slide.url}} " alt=" ">
     </div>
+  </div>
 </swiper>
 
 <div class="activeSlide ">
-    <br>
-    <p>{{slides[0].text.name}}</p>
-    <p>Автор: {{slides[0].text.author}}</p>
-    <p>Година: {{slides[0].text.Year}}</p>
-    <p>Формат: {{slides[0].text.Format}}</p>
-    <p>Страници: {{slides[0].text.Pages}}</p>
-    <span class="material-icons ">
-<a href="{{this.slides[0].link}} " target="blank "></a>
-</span>
+  <ul>
+    <li>{{slides[0].text.name}}</li>
+    <li>Автор: {{slides[0].text.author}}</li>
+    <li>Година: {{slides[0].text.Year}}</li>
+    <li>Формат: {{slides[0].text.Format}}</li>
+    <li>Страници: {{slides[0].text.Pages}}</li>
+    <li> <span class="material-icons ">
+        <a href="{{this.slides[0].link}} " target="blank "></a>
+      </span></li>
+  </ul>
 </div>
 
 {{removeBtns()}}

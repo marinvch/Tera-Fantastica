@@ -78,26 +78,27 @@ export class BooksComponent implements OnInit {
     if (this.Slides[index].link !== "") {
       // tslint:disable-next-line: no-shadowed-variable
       const element = document.querySelector(".activeSlide");
-      element.innerHTML = `
-        <br>
-        <p>${this.Slides[index].text.name}</p>
-        <p>Автор: ${this.Slides[index].text.author}</p>
-        <p>Година: ${this.Slides[index].text.Year}</p>
-        <p>Формат: ${this.Slides[index].text.Format}</p>
-        <p>Страници: ${this.Slides[index].text.Pages}</p>
-        <span class="material-icons">
+      element.innerHTML = `<ul>
+        <li>${this.Slides[index].text.name}</li>
+        <li>Автор: ${this.Slides[index].text.author}</li>
+        <li>Година: ${this.Slides[index].text.Year}</li>
+        <li>Формат: ${this.Slides[index].text.Format}</li>
+        <li>Страници: ${this.Slides[index].text.Pages}</li>
+        <li><span class="material-icons">
         <a href="${this.Slides[index].link}" target="blank">picture_as_pdf</a>
-        </span>`;
+        </span></li>
+        </ul>`;
     } else {
       // tslint:disable-next-line: no-shadowed-variable
       const element = document.querySelector(".activeSlide");
       element.innerHTML = `
-        <br>
-        <p>${this.Slides[index].text.name}</p>
-        <p>Автор: ${this.Slides[index].text.author}</p>
-        <p>Година: ${this.Slides[index].text.Year}</p>
-        <p>Формат: ${this.Slides[index].text.Format}</p>
-        <p>Страници: ${this.Slides[index].text.Pages}</p>`;
+        <ul>
+        <li>${this.Slides[index].text.name}</li>
+        <li>Автор: ${this.Slides[index].text.author}</li>
+        <li>Година: ${this.Slides[index].text.Year}</li>
+        <li>Формат: ${this.Slides[index].text.Format}</li>
+        <li>Страници: ${this.Slides[index].text.Pages}</li>
+        </ul>`;
     }
   }
 
