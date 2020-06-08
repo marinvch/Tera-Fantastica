@@ -126,15 +126,6 @@ export class BooksComponent implements OnInit {
     }
   }
 
-  public removeBtns(): void {
-    const leftBtn = document.querySelector(".swiper-button-prev");
-
-    leftBtn?.remove();
-
-    const rigthBtn = document.querySelector(".swiper-button-next");
-    rigthBtn?.remove();
-  }
-
   ngOnInit(): void {
     this._BooksService.getData().subscribe((data) => (this.Slides = data));
   }
