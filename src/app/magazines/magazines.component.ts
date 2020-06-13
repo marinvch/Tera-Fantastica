@@ -14,6 +14,8 @@ import { ViewChild, OnInit, Component } from "@angular/core";
 export class MagazinesComponent implements OnInit {
   public show = true;
 
+  public Slides = [];
+
   public disabled = false;
 
   public config: SwiperConfigInterface = {
@@ -37,8 +39,6 @@ export class MagazinesComponent implements OnInit {
 
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
-
-  public slides = [];
 
   constructor(private _MagazinesService: MagazinesService) {
     const element = (document.querySelectorAll(
@@ -75,31 +75,28 @@ export class MagazinesComponent implements OnInit {
   }
 
   public onIndexChange(index: number): void {
-    if (this.slides[index].link !== "") {
-      // tslint:disable-next-line: no-shadowed-variable
-      const element = document.querySelector(".activeSlide");
+    const element = document.querySelector(".activeSlide");
+    if (this.Slides[index].link !== "") {
       element.innerHTML = `
         <ul>
-        <li>${this.slides[index].text.name}</li>
-        <li>Автор: ${this.slides[index].text.author}</li>
-        <li>Година: ${this.slides[index].text.Year}</li>
-        <li>Формат: ${this.slides[index].text.Format}</li>
-        <li>Страници: ${this.slides[index].text.Pages}</li>
+        <li>${this.Slides[index].text.name}</li>
+        <li>Автор: ${this.Slides[index].text.author}</li>
+        <li>Година: ${this.Slides[index].text.Year}</li>
+        <li>Формат: ${this.Slides[index].text.Format}</li>
+        <li>Страници: ${this.Slides[index].text.Pages}</li>
         <li><span class="material-icons">
-        <a href="${this.slides[index].link}" target="blank">picture_as_pdf</a>
+        <a href="${this.Slides[index].link}" target="blank">picture_as_pdf</a>
         </span>
         </li>
         </ul>`;
     } else {
-      // tslint:disable-next-line: no-shadowed-variable
-      const element = document.querySelector(".activeSlide");
       element.innerHTML = `
         <ul>
-        <li>${this.slides[index].text.name}</li>
-        <li>Автор: ${this.slides[index].text.author}</li>
-        <li>Година: ${this.slides[index].text.Year}</li>
-        <li>Формат: ${this.slides[index].text.Format}</li>
-        <li>Страници: ${this.slides[index].text.Pages}</li>
+        <li>${this.Slides[index].text.name}</li>
+        <li>Автор: ${this.Slides[index].text.author}</li>
+        <li>Година: ${this.Slides[index].text.Year}</li>
+        <li>Формат: ${this.Slides[index].text.Format}</li>
+        <li>Страници: ${this.Slides[index].text.Pages}</li>
         </ul>`;
     }
     // tslint:disable-next-line: variable-name
@@ -131,15 +128,7 @@ export class MagazinesComponent implements OnInit {
     }
   }
 
-  // public removeBtns(): void {
-  //   const leftBtn = document.querySelector(".swiper-button-prev");
-  //   leftBtn?.remove();
-
-  //   const rigthBtn = document.querySelector(".swiper-button-next");
-  //   rigthBtn?.remove();
-  // }
-
   ngOnInit(): void {
-    this.slides = this._MagazinesService.getData();
+    this._MagazinesService.getData().subscribe((data) => (this.Slides = data));
   }
 }
