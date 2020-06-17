@@ -1,6 +1,5 @@
 import { MagazinesService } from "./magazines/magazines.service";
 import { BooksService } from "./books/books.service";
-
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
@@ -25,16 +24,6 @@ import {
   SWIPER_CONFIG,
 } from "ngx-swiper-wrapper";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
-// const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-//   observer: true,
-//   direction: 'horizontal',
-//   threshold: 50,
-//   spaceBetween: 5,
-//   slidesPerView: 1,
-//   centeredSlides: true,
-//   loop: true,
-// };
 
 @NgModule({
   declarations: [

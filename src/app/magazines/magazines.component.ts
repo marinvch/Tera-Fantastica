@@ -4,7 +4,7 @@ import {
   SwiperDirective,
   SwiperConfigInterface,
 } from "ngx-swiper-wrapper";
-import { ViewChild, OnInit, Component } from "@angular/core";
+import { ViewChild, OnInit, Component, HostListener } from "@angular/core";
 
 @Component({
   selector: "app-magazines",
@@ -39,6 +39,23 @@ export class MagazinesComponent implements OnInit {
 
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
+  @HostListener("window:resize", ["$event"])
+  onResize(event) {
+
+    let width = event.target.innerWidth;
+    let heigth = event.target.innerHeight;
+
+    if (width < 720 &&  this.config.direction === "horizontal" ) {
+      this.config.direction = "vertical";
+      this.config.slidesPerView = 3;
+    } else if (width > 720) {
+      this.config.direction = "horizontal";
+      this.config.slidesPerView = 5;
+    }
+
+    console.log(this.config.direction);
+    console.log(width);
+  }
 
   constructor(private _MagazinesService: MagazinesService) {
     const element = (document.querySelectorAll(
@@ -51,11 +68,6 @@ export class MagazinesComponent implements OnInit {
 
     const removeImg = document.getElementById("imgContainer");
     removeImg.style.display = "none";
-  }
-
-  public toggleDirection(): void {
-    this.config.direction =
-      this.config.direction === "horizontal" ? "vertical" : "horizontal";
   }
 
   public toggleslidesPerView(): void {
@@ -108,27 +120,11 @@ export class MagazinesComponent implements OnInit {
     console.log("Swiper event: ", event);
   }
 
-  public reportWindowSize(event: {
-    target: { innerHeight: any; innerWidth: any };
-  }): void {
-    const heigth = event.target.innerHeight;
-    const width = event.target.innerWidth;
-
-    if (heigth > width && this.config.direction !== "vertical") {
-      this.config.direction = "vertical";
-      if (this.config.direction === "vertical") {
-        this.config.slidesPerView = 3;
-      }
-    }
-    if (heigth < width && this.config.direction !== "horizontal") {
-      this.config.direction = "horizontal";
-      if (this.config.direction === "horizontal") {
-        this.config.slidesPerView = 5;
-      }
-    }
-  }
-
-  ngOnInit(): void {
+  ngOnInit() {
     this._MagazinesService.getData().subscribe((data) => (this.Slides = data));
   }
+
+  
+
+  
 }
