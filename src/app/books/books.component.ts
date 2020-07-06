@@ -30,7 +30,7 @@ export class BooksComponent implements OnInit {
     effect: "coverflow",
     coverflowEffect: {
       rotate: 0,
-      stretch: -42,
+      stretch: -50,
       depth: 90,
       modifier: 2,
       slideShadows: false,

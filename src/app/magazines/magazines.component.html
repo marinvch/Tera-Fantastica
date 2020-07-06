@@ -1,13 +1,27 @@
-<swiper fxFlex="auto" [config]="config " (indexChange)="onIndexChange($event) ">
-  <div *ngFor="let slide of Slides; let index=index" class="swiper-slide cursor-pointer ">
-    <div fxLayout="column " fxLayoutAlign="center center " fxFlexFill class="mx-2 ">
-      <img src=" {{slide.url}} " alt=" ">
-    </div>
-  </div>
-</swiper>
+<div class="box-container" fxLayout="column" [ngStyle.lt-sm]="'min-height: 800px;'">
+  <div class="app-title">Simple example app for the ngx-swiper-wrapper</div>
 
-<div class="activeSlide">
-  <ul>
+  <div class="info-container">
+    You can change the basic settings of the Swiper area by clicking the buttons on the controls pane.
+  </div>
+
+  <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+      <div class="box-title">Controls</div>
+
+      <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+    
+      </div>
+    </div>
+
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+      <div class="box-title">Swiper</div>
+
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <swiper *ngIf="type == 'component' && show" class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled" (indexChange)="onIndexChange($event)" (swiperTransitionStart)="onSwiperEvent('transitionStart')" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
+          <div class="swiper-slide">
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+              {{slide}} <ul>
     <li>{{Slides[0].text.name}}</li>
     <li>Автор: {{Slides[0].text.author}}</li>
     <li>Година: {{Slides[0].text.Year}}</li>
@@ -18,3 +32,21 @@
     </span>
   </ul>
 </div>
+        </swiper>
+
+        <div *ngIf="type == 'directive' && show" class="swiper-container" [disabled]="disabled" [swiper]="config" (indexChange)="onIndexChange($event)" (swiperTransitionStart)="onSwiperEvent('transitionStart')" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
+          <div class="swiper-wrapper">
+            <div *ngFor="let slide of slides" class="swiper-slide">
+              <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                {{slide}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

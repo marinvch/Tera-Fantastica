@@ -2,11 +2,10 @@
   margin: 0;
   padding: 0;
 }
-html,
-body {
-  width: 100%;
-  height: 100vh;
-  background-color: none;
+html{
+  width:100%;
+  height:100vh;
+  background-color:none;
 }
 .swiper-button-prev {
   visibility: hidden;
@@ -16,7 +15,4 @@ body {
 }
 li {
   margin: 5px 0;
-}
-ul {
-  list-style-type: none;
 }
