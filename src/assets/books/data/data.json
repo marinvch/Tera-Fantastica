@@ -1,6 +1,6 @@
 [
   {
-    "url": "../assets/books/img1.png",
+    "url": "../assets/books/img1.jpg",
     "text": {
       "name": "Домът на Велзевул",
       "author": "Т. Р. Пейков",
@@ -12,7 +12,7 @@
     "link": ""
   },
   {
-    "url": "../assets/books/img2.png",
+    "url": "../assets/books/img2.jpg",
     "text": {
       "name": "Хакери на човешките души",
       "author": "Иван Попов",
@@ -24,7 +24,7 @@
     "link": "../assets/books/pdf/Ivan_Popov_-_Hakeri_na_choveshkite_dushi.pdf"
   },
   {
-    "url": "../assets/books/img3.png",
+    "url": "../assets/books/img3.jpg",
     "text": {
       "name": "Операция „Риба“",
       "author": "Гай Афраний Кота",
@@ -36,7 +36,7 @@
     "link": "../assets/books/pdf/Petyr_Kopanov_-_Operatsija_Riba.pdf"
   },
   {
-    "url": "../assets/books/img4.png",
+    "url": "../assets/books/img4.jpg",
     "text": {
       "name": "Орфеус слиза в Ада",
       "author": "Георги Малинов",
@@ -48,7 +48,7 @@
     "link": ""
   },
   {
-    "url": "../assets/books/img5.png",
+    "url": "../assets/books/img5.jpg",
     "text": {
       "name": "Те не вярват в приказки",
       "author": "Мартин Петков",
@@ -60,7 +60,7 @@
     "link": ""
   },
   {
-    "url": "../assets/books/img6.png",
+    "url": "../assets/books/img6.jpg",
     "text": {
       "name": "Домът на Велзевул",
       "author": "Тервел Пейков",
@@ -72,7 +72,7 @@
     "link": ""
   },
   {
-    "url": "../assets/books/img7.png",
+    "url": "../assets/books/img7.jpg",
     "text": {
       "name": "С името на Иван Ефремов",
       "author": "Александър Карапанчев, Юрий Илков",

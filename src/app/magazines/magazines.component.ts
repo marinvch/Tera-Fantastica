@@ -27,11 +27,10 @@ export class MagazinesComponent implements OnInit {
     keyboard: true,
     slidesPerView: 5,
     loop: true,
-    spaceBetween: 1,
     effect: "coverflow",
     coverflowEffect: {
       rotate: 0,
-      stretch: -42,
+      stretch: -50,
       depth: 90,
       modifier: 2,
       slideShadows: false,
@@ -42,10 +41,11 @@ export class MagazinesComponent implements OnInit {
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
   @HostListener("window:resize", ["$event"])
   onResize(event) {
+
     let width = event.target.innerWidth;
     let heigth = event.target.innerHeight;
 
-    if (width < 720 && this.config.direction === "horizontal") {
+    if (width < 720 &&  this.config.direction === "horizontal" ) {
       this.config.direction = "vertical";
       this.config.slidesPerView = 3;
     } else if (width > 720) {
@@ -70,16 +70,20 @@ export class MagazinesComponent implements OnInit {
     removeImg.style.display = "none";
   }
 
-  info() {
-    const element = document.querySelector(".activeSlide");
-  }
-
   public toggleslidesPerView(): void {
     if (this.config.slidesPerView !== 1) {
       this.config.slidesPerView = 5;
     } else {
       this.config.slidesPerView = 3;
     }
+  }
+
+  public toggleKeyboardControl(): void {
+    this.config.keyboard = !this.config.keyboard;
+  }
+
+  public toggleMouseWheelControl(): void {
+    this.config.mousewheel = !this.config.mousewheel;
   }
 
   public onIndexChange(index: number): void {
@@ -118,8 +122,9 @@ export class MagazinesComponent implements OnInit {
 
   ngOnInit() {
     this._MagazinesService.getData().subscribe((data) => (this.Slides = data));
-
-    let element = document.querySelector(".swiper-wrapper");
-    console.log(element);
   }
+
+  
+
+  
 }
