@@ -1,5 +1,4 @@
-<swiper (window:resize)="reportWindowSize($event)" fxFlex="auto" [config]="config "
-  (indexChange)="onIndexChange($event) ">
+<swiper fxFlex="auto" [config]="config " (indexChange)="onIndexChange($event) ">
   <div *ngFor="let slide of Slides; let index=index" class="swiper-slide cursor-pointer ">
     <div fxLayout="column " fxLayoutAlign="center center " fxFlexFill class="mx-2 ">
       <img src=" {{slide.url}} " alt=" ">
