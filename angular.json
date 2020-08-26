@@ -28,7 +28,7 @@
                             "src/styles.css",
                             "./node_modules/swiper/css/swiper.css"
                         ],
-                        "scripts": ["src/assets/openseadragon.min.js", ]
+                        "scripts": ["src/assets/openseadragon.min.js" ]
                     },
                     "configurations": {
                         "production": {

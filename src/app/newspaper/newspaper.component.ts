@@ -39,7 +39,8 @@ export class NewspaperComponent {
       prefixUrl: 'assets/images/',
       tileSources: sourceFiles,
       sequenceMode: true,
-      preserveViewport: true,
+      visibilityRatio: 1.0,
+      constrainDuringPan: true,
     });
   }
 }
