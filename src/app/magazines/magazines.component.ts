@@ -26,9 +26,9 @@ export class MagazinesComponent implements OnInit {
     mousewheel: true,
     keyboard: true,
     slidesPerView: 5,
+    spaceBetween: 10,
     loop: true,
-    spaceBetween: 1,
-    effect: "coverflow",
+       effect: "coverflow",
     coverflowEffect: {
       rotate: 0,
       stretch: -42,
@@ -36,23 +36,24 @@ export class MagazinesComponent implements OnInit {
       modifier: 2,
       slideShadows: false,
     },
+
   };
 
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
   @HostListener("window:resize", ["$event"])
+
   onResize(event) {
     let width = event.target.innerWidth;
     let heigth = event.target.innerHeight;
 
-    if (width < 720 && this.config.direction === "horizontal") {
+    if (width < 768 && this.config.direction === "horizontal") {
       this.config.direction = "vertical";
       this.config.slidesPerView = 3;
     } else if (width > 720) {
       this.config.direction = "horizontal";
       this.config.slidesPerView = 5;
     }
-
     console.log(this.config.direction);
     console.log(width);
   }
@@ -79,6 +80,7 @@ export class MagazinesComponent implements OnInit {
       this.config.slidesPerView = 5;
     } else {
       this.config.slidesPerView = 3;
+      this.config.spaceBetween=5;
     }
   }
 

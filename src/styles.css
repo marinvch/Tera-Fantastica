@@ -14,9 +14,7 @@ body {
 .swiper-button-next {
   visibility: hidden;
 }
-li {
-  margin: 5px 0;
-}
+
 ul {
   list-style-type: none;
 }
