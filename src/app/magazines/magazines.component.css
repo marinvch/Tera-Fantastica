@@ -3,14 +3,19 @@
   margin-bottom: 5px;
 }
 
+swiper{
+background-color: yellow;
+}
+
 .activeSlide {
   margin-top: 20px;
   text-align: center;
-
+  background-color: green;
 }
 
 .swiper-slide{
   padding-top: 20px;
+  background-color: black;
   margin:0;
   padding:0;
 }
