@@ -12,12 +12,9 @@ import { ViewChild, OnInit, Component, HostListener } from "@angular/core";
   styleUrls: ["magazines.component.css"],
 })
 export class MagazinesComponent implements OnInit {
-  public show = true;
-
+  public innerWidth: any;
+  public innerHeigth: any;
   public Slides = [];
-
-  public disabled = false;
-
   public config: SwiperConfigInterface = {
     a11y: false,
     observer: true,
@@ -25,10 +22,9 @@ export class MagazinesComponent implements OnInit {
     direction: "horizontal",
     mousewheel: true,
     keyboard: true,
-    slidesPerView: 5,
     spaceBetween: 10,
     loop: true,
-       effect: "coverflow",
+    effect: "coverflow",
     coverflowEffect: {
       rotate: 0,
       stretch: -42,
@@ -47,16 +43,15 @@ export class MagazinesComponent implements OnInit {
     let width = event.target.innerWidth;
     let heigth = event.target.innerHeight;
 
-    if (width < 768 && this.config.direction === "horizontal") {
+    if (heigth > width ) {
       this.config.direction = "vertical";
-      this.config.slidesPerView = 3;
-    } else if (width > 720) {
+      this.config.slidesPerView = 1;
+    } else if (heigth < width ) {
       this.config.direction = "horizontal";
       this.config.slidesPerView = 5;
     }
     console.log(this.config.direction);
-    console.log(width);
-  }
+    }
 
   constructor(private _MagazinesService: MagazinesService) {
     const element = (document.querySelectorAll(
@@ -69,19 +64,6 @@ export class MagazinesComponent implements OnInit {
 
     const removeImg = document.getElementById("imgContainer");
     removeImg.style.display = "none";
-  }
-
-  info() {
-    const element = document.querySelector(".activeSlide");
-  }
-
-  public toggleslidesPerView(): void {
-    if (this.config.slidesPerView !== 1) {
-      this.config.slidesPerView = 5;
-    } else {
-      this.config.slidesPerView = 3;
-      this.config.spaceBetween=5;
-    }
   }
 
   public onIndexChange(index: number): void {
@@ -121,7 +103,15 @@ export class MagazinesComponent implements OnInit {
   ngOnInit() {
     this._MagazinesService.getData().subscribe((data) => (this.Slides = data));
 
-    let element = document.querySelector(".swiper-wrapper");
-    console.log(element);
+    this.innerWidth = window.innerWidth;
+    this.innerHeigth =  window.innerHeight;
+
+    if (this.innerHeigth > this.innerWidth ) {
+      this.config.direction = "vertical";
+      this.config.slidesPerView = 1;
+    } else if (this.innerHeigth < this.innerWidth) {
+      this.config.direction = "horizontal";
+      this.config.slidesPerView = 5;
+    }
   }
 }
