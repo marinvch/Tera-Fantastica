@@ -18,11 +18,9 @@ import { BooksComponent } from "./books/books.component";
 import { MagazinesComponent } from "./magazines/magazines.component";
 import { NewspaperComponent } from "./newspaper/newspaper.component";
 
-import {
-  SwiperModule,
-  SwiperConfigInterface,
-  SWIPER_CONFIG,
-} from "ngx-swiper-wrapper";
+//importing Swiper Module for angular from https://swiperjs.com/angular/
+import { SwiperModule } from 'swiper/angular';
+
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({

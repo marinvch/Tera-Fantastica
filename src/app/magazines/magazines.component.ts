@@ -1,57 +1,44 @@
 import { MagazinesService } from "./magazines.service";
-import {
-  SwiperComponent,
-  SwiperDirective,
-  SwiperConfigInterface,
-} from "ngx-swiper-wrapper";
-import { ViewChild, OnInit, Component, HostListener } from "@angular/core";
+
+import SwiperCore, { Virtual, EffectFade } from 'swiper/core';
+
+// install Swiper components
+SwiperCore.use([Virtual, EffectFade]);
+
+
+import { OnInit, Component, HostListener } from "@angular/core";
 
 @Component({
   selector: "app-magazines",
   templateUrl: "magazines.component.html",
   styleUrls: ["magazines.component.css"],
 })
+
 export class MagazinesComponent implements OnInit {
   public innerWidth: any;
   public innerHeigth: any;
   public Slides = [];
-  public config: SwiperConfigInterface = {
-    a11y: false,
-    observer: true,
-    centeredSlides: true,
-    direction: "horizontal",
-    mousewheel: true,
-    keyboard: true,
-    spaceBetween: 10,
-    loop: true,
-    effect: "coverflow",
-    coverflowEffect: {
-      rotate: 0,
-      stretch: -42,
-      depth: 90,
-      modifier: 2,
-      slideShadows: false,
-    },
 
-  };
 
-  @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
-  @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
   @HostListener("window:resize", ["$event"])
 
   onResize(event) {
     let width = event.target.innerWidth;
     let heigth = event.target.innerHeight;
 
-    if (heigth > width ) {
-      this.config.direction = "vertical";
-      this.config.slidesPerView = 1;
-    } else if (heigth < width ) {
-      this.config.direction = "horizontal";
-      this.config.slidesPerView = 5;
-    }
-    console.log(this.config.direction);
-    }
+    // if (heigth > width) {
+    //   this.config.direction = "vertical";
+    //   this.config.slidesPerView = 1;
+    // } else if (heigth < width) {
+    //   this.config.direction = "horizontal";
+    //   this.config.slidesPerView = 5;
+    // }
+    // console.log(this.config.direction);
+  }
+
+
+
+
 
   constructor(private _MagazinesService: MagazinesService) {
     const element = (document.querySelectorAll(
@@ -104,14 +91,14 @@ export class MagazinesComponent implements OnInit {
     this._MagazinesService.getData().subscribe((data) => (this.Slides = data));
 
     this.innerWidth = window.innerWidth;
-    this.innerHeigth =  window.innerHeight;
+    this.innerHeigth = window.innerHeight;
 
-    if (this.innerHeigth > this.innerWidth ) {
-      this.config.direction = "vertical";
-      this.config.slidesPerView = 1;
-    } else if (this.innerHeigth < this.innerWidth) {
-      this.config.direction = "horizontal";
-      this.config.slidesPerView = 5;
-    }
+    // if (this.innerHeigth > this.innerWidth) {
+    //   this.config.direction = "vertical";
+    //   this.config.slidesPerView = 1;
+    // } else if (this.innerHeigth < this.innerWidth) {
+    //   this.config.direction = "horizontal";
+    //   this.config.slidesPerView = 5;
+    // }
   }
 }
