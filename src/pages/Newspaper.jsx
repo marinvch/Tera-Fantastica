@@ -1,5 +1,6 @@
 import React from "react";
+import SeadragonViewer from "../components/SeadragonViewer";
 
 export default function Newspaper() {
-  return <div style={{ marginTop: "100px"}}>Newspapper</div>;
+  return <SeadragonViewer />;
 }
