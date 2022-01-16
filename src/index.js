@@ -13,7 +13,7 @@ ReactDOM.render(
       <Route path="/" element={<App />}>
         <Route path="newspaper" exact element={<Newspaper />} />
         <Route path="books" element={<Books />} />
-        <Route path ="magazines" element={<Magazines />} />
+        <Route path="magazines" element={<Magazines />} />
       </Route>
     </Routes>
   </BrowserRouter>,
