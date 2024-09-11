@@ -13,6 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   container: {
+    display: 'flex',
     width: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
@@ -23,8 +24,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   contentWrapper: {
     flexGrow: 1,
     display: 'flex',
+
     justifyContent: 'center',
-    width: '100%',
+    width: '70%',
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
@@ -32,8 +34,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   content: {
     width: '100%',
-    padding: theme.spacing(2),
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
