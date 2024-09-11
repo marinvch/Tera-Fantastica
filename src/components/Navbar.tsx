@@ -1,22 +1,22 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -31,117 +31,103 @@ const Navbar = (props) => {
 
   const menuItems = [
     {
-      label: "Newspaper",
+      label: 'Newspaper',
       icon: <NewspaperIcon />,
-      route: "newspaper",
+      route: 'newspaper',
     },
     {
-      label: "Magazines",
+      label: 'Magazines',
       icon: <ImportContactsIcon />,
-      route: "magazines",
+      route: 'magazines',
     },
     {
-      label: "Books",
+      label: 'Books',
       icon: <LocalLibraryIcon />,
-      route: "books",
+      route: 'books',
     },
   ];
 
   const drawer = (
     <List>
       {menuItems.map((item, index) => (
-        <ListItem
-          key={index}
-          button
-          onClick={() => navigate(item.route)}
-          sx={{ background: "#201B25" }}
-        >
-          <ListItemIcon sx={{ color: "white" }}>{item.icon}</ListItemIcon>
-          <ListItemText sx={{ color: "white" }} primary={item.label} />
+        <ListItem key={index} onClick={() => navigate(item.route)} sx={{ background: '#201B25' }}>
+          <ListItemIcon sx={{ color: 'white' }}>{item.icon}</ListItemIcon>
+          <ListItemText sx={{ color: 'white' }} primary={item.label} />
         </ListItem>
       ))}
     </List>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position='fixed'
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar sx={{ background: "#201B25", color: "white" }}>
+        <Toolbar sx={{ background: '#201B25', color: 'white' }}>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
+            color='inherit'
+            aria-label='open drawer'
+            edge='start'
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant='h6' noWrap component='div'>
             <input />
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
+      <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label='mailbox folders'>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
-          variant="temporary"
+          variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
               width: drawerWidth,
-              background: "#201B25",
+              background: '#201B25',
             },
           }}
         >
-          <Toolbar sx={{ background: "#201B25", color: "white" }}>
-            TFantastica
-          </Toolbar>
+          <Toolbar sx={{ background: '#201B25', color: 'white' }}>TFantastica</Toolbar>
           <Divider />
           {drawer}
         </Drawer>
         <Drawer
-          variant="permanent"
+          variant='permanent'
           sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
               width: drawerWidth,
-              background: "#201B25",
+              background: '#201B25',
             },
           }}
           open
         >
-          <Toolbar sx={{ background: "#201B25", color: "white" }}>
-            TFantastica
-          </Toolbar>
+          <Toolbar sx={{ background: '#201B25', color: 'white' }}>TFantastica</Toolbar>
           <Divider />
           {drawer}
         </Drawer>
       </Box>
 
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
           p: 3,
