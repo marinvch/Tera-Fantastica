@@ -30,7 +30,7 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
   }, []);
 
   const handleSlideChange = (swiper: any) => {
-    setActiveIndex(swiper.activeIndex); // Update active index when slide changes
+    setActiveIndex(swiper.realIndex); // Update active index when slide changes
   };
 
   return (
@@ -61,26 +61,18 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
           // Determine which class to apply based on the active slide
           let slideClass = '';
           if (index === activeIndex) {
-            slideClass = 'active-slide';
+            slideClass = 'level0';
           } else if (index === activeIndex - 1 || index === activeIndex + 1) {
-            slideClass = 'h2-slide';
+            slideClass = 'level1';
           } else if (index === activeIndex - 2 || index === activeIndex + 2) {
-            slideClass = 'h3-slide';
+            slideClass = 'level2';
           }
 
           return (
             <SwiperSlide key={item.id} className={slideClass}>
               <div style={{ textAlign: 'center' }}>
                 <p className={`slide-title ${slideClass}`}>{item.text.name}</p>
-                <img
-                  src={item.url}
-                  alt={item.text.name}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    maxWidth: slideClass === 'active-slide' ? '300px' : slideClass === 'h2-slide' ? '200px' : '150px',
-                  }}
-                />
+                <img src={item.url} alt={item.text.name} className={`slide-image ${slideClass}`} />
                 <p>Автор: {item.text.author}</p>
                 <p>{item.text.Format}</p>
                 <p>{item.text.Pages}</p>
