@@ -24,6 +24,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   contentWrapper: {
     flexGrow: 1,
     display: 'flex',
+
     justifyContent: 'center',
     width: '70%',
     [theme.breakpoints.down('md')]: {
@@ -33,8 +34,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
   content: {
     width: '100%',
-    padding: theme.spacing(2),
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
