@@ -35,25 +35,6 @@ module.exports = {
     'import/no-unresolved': 'error', // Turn on errors for missing imports
     'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'internal', ['sibling', 'parent'], 'index', 'unknown'],
-        pathGroups: [
-          {
-            pattern: '@(react|react-*)',
-            group: 'external',
-            position: 'before',
-          },
-        ],
-        pathGroupsExcludedImportTypes: ['builtin'],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-      },
-    ],
     'no-var': 'error',
     'prefer-const': 'error',
     'prettier/prettier': [
