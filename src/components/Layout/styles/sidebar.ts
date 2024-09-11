@@ -10,14 +10,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginRight: '16px',
   },
 
-  title: {
-    flexGrow: 1,
-  },
-
   navigation: {
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.background.default,
     display: 'flex',
     flexDirection: 'column',
     width: '150px',
     flex: 1, // This will make the navigation take the remaining space
+  },
+  listItem: {
+    transition: 'transform 0.3s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.05)',
+    },
   },
 }));

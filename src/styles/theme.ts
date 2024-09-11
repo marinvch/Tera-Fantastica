@@ -40,6 +40,23 @@ const theme = createTheme({
       xl: 1920,
     },
   },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    // Add other components that use shadows if needed
+  },
 });
 
 export default theme;

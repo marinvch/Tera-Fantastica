@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Drawer, IconButton, Toolbar } from '@mui/material';
 import { useIsDesktop } from '../../utils/hooks';
 import { useStyles } from './styles/header';
 import Navigation from './Sidebar';
+import Logo from './Logo';
 
 const Header = () => {
   const classes = useStyles();
@@ -24,11 +25,7 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          {isDesktop && (
-            <Typography variant='h6' className={classes.title}>
-              Tera Fantastica
-            </Typography>
-          )}
+          {isDesktop && <Logo />}
 
           {!isDesktop && (
             <IconButton
