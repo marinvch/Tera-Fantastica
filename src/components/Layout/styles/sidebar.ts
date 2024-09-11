@@ -5,10 +5,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
   },
+
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: '16px',
   },
+
   title: {
     flexGrow: 1,
+  },
+
+  navigation: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '150px',
+    flex: 1, // This will make the navigation take the remaining space
   },
 }));

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Drawer, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material';
-import useIsDesktop from '../../utils/hooks';
-import { useStyles } from '../../styles/components/header';
+import { AppBar, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
+import { useIsDesktop } from '../../utils/hooks';
+import { useStyles } from './styles/header';
+import Navigation from './Sidebar';
 
 const Header = () => {
   const classes = useStyles();
@@ -19,25 +20,6 @@ const Header = () => {
     setDrawerOpen(open);
   };
 
-  const drawerContent = (
-    <div role='presentation' onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
-      <Typography variant='h6' className={classes.title}>
-        Tera Fantastica
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary='Home' />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary='About' />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary='Contact' />
-        </ListItem>
-      </List>
-    </div>
-  );
-
   return (
     <div className={classes.root}>
       <AppBar position='static'>
@@ -47,6 +29,7 @@ const Header = () => {
               Tera Fantastica
             </Typography>
           )}
+
           {!isDesktop && (
             <IconButton
               edge='start'
@@ -64,7 +47,7 @@ const Header = () => {
             onClose={toggleDrawer(false)}
             PaperProps={{ style: { height: '100%' } }}
           >
-            {drawerContent}
+            <Navigation onClick={() => toggleDrawer(false)} />
           </Drawer>
         </Toolbar>
       </AppBar>
