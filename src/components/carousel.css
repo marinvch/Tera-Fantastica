@@ -1,0 +1,20 @@
+/* Default slide */
+.slide-title {
+  transition: font-size 0.3s ease;
+}
+
+/* Active slide (h1 style) */
+.active-slide .slide-title {
+  font-size: 2rem; /* h1 equivalent */
+  font-weight: bold;
+}
+
+/* Next to active slide (h2 style) */
+.h2-slide .slide-title {
+  font-size: 1.5rem; /* h2 equivalent */
+}
+
+/* Next to h2 slide (h3 style) */
+.h3-slide .slide-title {
+  font-size: 1rem; /* h3 equivalent */
+}
