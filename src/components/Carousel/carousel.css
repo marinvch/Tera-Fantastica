@@ -1,3 +1,43 @@
+body {
+  font-family: 'Lobster';
+}
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#carousel {
+  position: absolute;
+  height: 200px;
+  width: 810px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.arrow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: #228291;
+  line-height: 30px;
+  margin-top: 85px;
+  z-index: 1000;
+}
+
 /* Default slide */
 .slide-title {
   transition: font-size 0.3s ease;
@@ -15,5 +55,25 @@
 }
 
 /* Next to h2 slide (h3 style) */
-.h3-slide .slide-title {
+
+.slide-image.level0 {
+  max-width: 300px;
+}
+
+.slide-image.level1 {
+  max-width: 400px;
+}
+
+.slide-image.level2 {
+  max-width: 250px;
+  transform: translate3d(0px, 0px) rotateX(0deg) rotateY(0deg) scale(0.9);
+}
+.swiper-pagination {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }

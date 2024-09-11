@@ -4,14 +4,13 @@ import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useStyles } from './styles';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
-import './carousel.css'; // Add a CSS file for custom styles
+import './carousel.css';
 import { Grid, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface CarouselProps {
   data: Array<{
@@ -26,12 +25,13 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(2); // Start with the middle slide active
   const isMobile = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
+
   const handleSlideChange = (swiper: any) => {
-    setActiveIndex(swiper.realIndex); // Update active index when slide changes
+    setActiveIndex(swiper.realIndex);
   };
 
   return (
-    <div className='App'>
+    <Grid container>
       <Swiper
         modules={[Navigation, Pagination, EffectCoverflow]}
         effect='coverflow'
@@ -42,18 +42,17 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
           modifier: 1,
           scale: 0.8,
         }}
-        slidesPerView={isMobile ? 1 : 4} // Ensure only 5 slides visible
-        initialSlide={5}
+        slidesPerView={isMobile ? 1 : 4}
+        initialSlide={2}
         spaceBetween={0}
         loop={true}
         centeredSlides
         navigation={false}
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, el: '.swiper-pagination' }}
         onSlideChange={handleSlideChange}
         style={{ width: isMobile ? '100%' : '800px' }}
       >
         {data?.map((item, index) => {
-          // Determine which class to apply based on the active slide
           let slideClass = '';
           if (index === activeIndex) {
             slideClass = 'level0';
@@ -73,27 +72,50 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
                     Автор: {item.text.author}
                   </Typography>
                   <Typography variant='body2' className={classes.bookInfoText}>
-                    {item.text.Format}
+                    Формат: {item.text.Format}
                   </Typography>
                   <Typography variant='body2' className={classes.bookInfoText}>
-                    {item.text.Pages}
+                    Страници: {item.text.Pages}
                   </Typography>
                   <Typography variant='body2' className={classes.bookInfoText}>
-                    {item.text.Year}г.
+                    Година: {item.text.Year}г.
                   </Typography>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%',
+                      marginTop: '10px',
+                    }}
+                  >
+                    {item.link && (
+                      <Link
+                        to={item.link}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          textDecoration: 'none',
+                          color: '#ff5252',
+                          fontWeight: '500',
+                          fontSize: '1rem',
+                        }}
+                      >
+                        <ChromeReaderModeIcon style={{ color: '#ff5252', marginRight: '5px', cursor: 'pointer' }} />
+                        <span style={{ cursor: 'pointer' }}>Read Book</span>
+                      </Link>
+                    )}
+                  </div>
                 </Grid>
-
-                {item.link && (
-                  <a href={item.link} target='_blank' rel='noopener noreferrer'>
-                    <ChromeReaderModeIcon style={{ color: 'red', cursor: 'pointer' }} />
-                  </a>
-                )}
               </div>
             </SwiperSlide>
           );
+          <div className='swiper-pagination'></div>;
         })}
       </Swiper>
-    </div>
+    </Grid>
   );
 };
 
