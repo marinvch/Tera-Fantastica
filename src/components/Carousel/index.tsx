@@ -11,6 +11,7 @@ import 'swiper/css/effect-coverflow';
 import './carousel.css';
 import { Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useIsDesktop } from 'utils/hooks';
 
 interface CarouselProps {
   data: Array<{
@@ -25,7 +26,7 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(2); // Start with the middle slide active
   const isMobile = useMediaQuery('(max-width:600px)');
   const classes = useStyles();
-
+  const isDesktop = useIsDesktop();
   const handleSlideChange = (swiper: any) => {
     setActiveIndex(swiper.realIndex);
   };
@@ -50,7 +51,7 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
         navigation={false}
         pagination={{ clickable: true, el: '.swiper-pagination' }}
         onSlideChange={handleSlideChange}
-        style={{ width: isMobile ? '100%' : '800px' }}
+        style={{ width: isMobile ? '100%' : '800px', height: isMobile ? '500px' : 'auto' }}
       >
         {data?.map((item, index) => {
           let slideClass = '';
@@ -67,7 +68,13 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
               <div style={{ textAlign: 'center' }}>
                 <p className={`slide-title ${slideClass}`}>{item.text.name}</p>
                 <img src={item.url} alt={item.text.name} className={`slide-image ${slideClass}`} />
-                <Grid container direction='column' spacing={1} alignItems='flex-start' className={classes.bookInfo}>
+                <Grid
+                  container
+                  direction='column'
+                  spacing={1}
+                  alignItems={isDesktop ? 'flex-start' : 'center'}
+                  className={classes.bookInfo}
+                >
                   <Typography variant='body2' className={classes.bookInfoText}>
                     Автор: {item.text.author}
                   </Typography>
