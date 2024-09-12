@@ -5,6 +5,10 @@ import { useIsDesktop } from '../../utils/hooks';
 import { useStyles } from './styles/header';
 import Navigation from './Sidebar';
 import Logo from './Logo';
+import SearchBar from '../Searchbar';
+import booksData from '../../data/books/books.json';
+import magazinesData from '../../data/magazines/magazines.json';
+import { useSearchAndFilter } from '../../utils/hooks';
 
 const Header = () => {
   const classes = useStyles();

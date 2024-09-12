@@ -29,11 +29,11 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
   const handleSlideChange = (swiper: any) => {
     setActiveIndex(swiper.realIndex);
   };
-
+  console.log(data);
   return (
     <Grid container>
       <Swiper
-        modules={[Navigation, Pagination, EffectCoverflow]}
+        modules={[EffectCoverflow]}
         effect='coverflow'
         direction={isMobile ? 'vertical' : 'horizontal'}
         coverflowEffect={{
@@ -112,7 +112,6 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
               </div>
             </SwiperSlide>
           );
-          <div className='swiper-pagination'></div>;
         })}
       </Swiper>
     </Grid>
